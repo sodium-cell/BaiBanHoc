@@ -1,0 +1,159 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài Bạn Học</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- MAIN MENU -->
+
+    <div class="main-menu">
+        <h1>BÀI BẠN HỌC</h1>
+        <p>The Ultimate Classmate Card Game</p>
+
+        <button onclick="startGame()">PLAY GAME</button>
+        <button onclick="openCollection()">CARD COLLECTION</button>
+        <button>HOW TO PLAY</button>
+        <button>SETTINGS</button>
+    </div>
+
+    <!-- CARD COLLECTION -->
+
+    <div id="collection" class="collection" hidden>
+
+        <button class="back-button" onclick="closeCollection()">
+            BACK
+        </button>
+
+        <h1>Classmate Album</h1>
+        <p>My Card Collection</p>
+
+        <div id="card-list"></div>
+
+    </div>
+
+    <!-- GAME BOARD -->
+
+    <div id="game-board" hidden>
+
+        <div class="battle-header">
+
+            <button class="exit-button" onclick="exitGame()">
+                EXIT
+            </button>
+
+            <div class="battle-title">
+                BÀI BẠN HỌC
+            </div>
+
+            <div id="round-number">
+                ROUND 01
+            </div>
+
+        </div>
+
+        <!-- OPPONENT -->
+
+        <div class="opponent-area">
+
+            <h2>Opponent</h2>
+
+            <p id="opponent-count" class="card-counter">
+                Cards remaining: 9
+            </p>
+
+            <div id="opponent-hand"></div>
+
+        </div>
+
+        <!-- PLAY AREA -->
+
+        <div class="play-area">
+
+            <h2>Play Area</h2>
+
+            <div id="played-cards"></div>
+
+            <div id="table-combo">No Combo</div>
+
+            <div id="table-power">0 POWER</div>
+
+            <div id="table-bonus">+0 Bonus</div>
+
+        </div>
+
+        <!-- TURN INDICATOR -->
+
+        <div id="turn-indicator" class="player-turn">
+            YOUR TURN
+        </div>
+
+        <p id="game-status">
+            Select your cards!
+        </p>
+
+        <!-- PLAYER AREA -->
+
+        <div class="player-area">
+
+            <h2>Your Cards</h2>
+
+            <p id="player-count" class="card-counter">
+                Cards remaining: 9
+            </p>
+
+            <div id="player-hand"></div>
+
+            <div class="game-actions">
+
+                <button id="pass-button" onclick="passTurn()">
+                    PASS
+                </button>
+
+                <button id="play-button" onclick="playCards()">
+                    PLAY CARDS
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- VICTORY / DEFEAT SCREEN -->
+
+    <div id="result-screen" hidden>
+
+        <div class="result-box">
+
+            <div id="result-title">VICTORY!</div>
+
+            <p id="result-description">
+                You won the game!
+            </p>
+
+            <button onclick="startGame()">
+                PLAY AGAIN
+            </button>
+
+            <button onclick="exitGame()">
+                MAIN MENU
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- JAVASCRIPT -->
+
+    <script src="cards.js"></script>
+    <script src="relationships.js"></script>
+    <script src="game.js"></script>
+
+</body>
+</html>

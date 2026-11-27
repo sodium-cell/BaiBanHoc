@@ -1,0 +1,511 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
+
+:root {
+    --ink: #35445c;
+    --paper: #fff8e7;
+    --yellow: #f8d875;
+    --blue: #a9cbe8;
+    --red: #f2b5b5;
+    --green: #c5d9af;
+    --purple: #dfd0ef;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+body {
+    margin: 0;
+    color: var(--ink);
+    font-family: 'Patrick Hand', cursive;
+    background-color: var(--paper);
+    background-image:
+        linear-gradient(#a9cbe855 1px, transparent 1px),
+        linear-gradient(90deg, #a9cbe855 1px, transparent 1px);
+    background-size: 25px 25px;
+}
+
+/* MAIN MENU */
+
+.main-menu {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+h1 {
+    font-size: clamp(40px, 7vw, 80px);
+    margin: 0;
+    transform: rotate(-3deg);
+    text-shadow: 4px 4px var(--yellow);
+}
+
+h2 {
+    margin: 10px 0;
+}
+
+p {
+    font-size: 22px;
+    margin-bottom: 40px;
+}
+
+/* BUTTONS */
+
+button {
+    font-family: inherit;
+    font-size: 25px;
+    color: var(--ink);
+    width: 280px;
+    padding: 15px;
+    margin: 10px;
+    border: none;
+    border-radius: 5px;
+    background: var(--yellow);
+    cursor: pointer;
+    box-shadow: 4px 5px 8px #00000022;
+    transition: 0.2s;
+}
+
+.main-menu button:nth-of-type(1) {
+    background: var(--yellow);
+    transform: rotate(-2deg);
+}
+
+.main-menu button:nth-of-type(2) {
+    background: var(--blue);
+    transform: rotate(2deg);
+}
+
+.main-menu button:nth-of-type(3) {
+    background: var(--red);
+    transform: rotate(-1deg);
+}
+
+.main-menu button:nth-of-type(4) {
+    background: var(--green);
+    transform: rotate(2deg);
+}
+
+button:not(:disabled):hover {
+    transform: scale(1.05);
+    box-shadow: 5px 8px 12px #00000033;
+}
+
+button:not(:disabled):active {
+    transform: scale(0.95);
+}
+
+button:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* SCHOOL DECORATION */
+
+.main-menu::before {
+    content: "📚";
+    position: absolute;
+    top: 5%;
+    right: 8%;
+    font-size: 100px;
+    transform: rotate(15deg);
+    pointer-events: none;
+}
+
+.main-menu::after {
+    content: "✏️";
+    position: absolute;
+    bottom: 5%;
+    left: 8%;
+    font-size: 120px;
+    transform: rotate(-25deg);
+    pointer-events: none;
+}
+
+/* GAME BOARD */
+
+#game-board {
+    min-height: 100vh;
+    padding: 20px;
+    text-align: center;
+}
+
+.battle-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 2px dashed #a9b6c7;
+    padding-bottom: 10px;
+}
+
+.battle-title {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.exit-button {
+    width: 90px;
+    padding: 8px;
+    font-size: 20px;
+    background: var(--red);
+}
+
+#round-number {
+    font-size: 20px;
+}
+
+/* OPPONENT AREA */
+
+.opponent-area {
+    min-height: 150px;
+    padding: 10px;
+}
+
+.card-counter {
+    font-size: 18px;
+    margin: 5px 0 15px;
+    opacity: 0.8;
+}
+
+#opponent-hand {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.opponent-card {
+    width: clamp(35px, 5vw, 65px);
+    aspect-ratio: 2 / 3;
+    background: var(--ink);
+    color: var(--yellow);
+    border: 4px double var(--yellow);
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+    font-weight: bold;
+    box-shadow: 3px 4px 6px #0002;
+}
+
+/* PLAY AREA */
+
+.play-area {
+    width: min(95%, 1100px);
+    min-height: 260px;
+    margin: 15px auto;
+    padding: 15px;
+    background: #ffffffaa;
+    border: 2px dashed #a9b6c7;
+    border-radius: 15px;
+    box-shadow: 4px 5px 0 #35445c0d;
+}
+
+#played-cards {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 10px;
+    min-height: 80px;
+}
+
+#played-cards .hand-card {
+    width: clamp(65px, 7vw, 105px);
+    cursor: default;
+    animation: cardPlay 0.35s ease-out;
+}
+
+/* TABLE INFORMATION */
+
+#table-combo {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+#table-power {
+    font-size: 38px;
+    font-weight: bold;
+    color: #a17c24;
+}
+
+#table-bonus {
+    color: #527c43;
+    font-size: 20px;
+}
+
+/* TURN INDICATOR */
+
+#turn-indicator {
+    width: min(90%, 500px);
+    margin: 15px auto;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 25px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.player-turn {
+    background: var(--green);
+}
+
+.bot-turn {
+    background: var(--red);
+}
+
+.finished-turn {
+    background: var(--yellow);
+}
+
+#game-status {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    margin: 10px 0;
+}
+
+/* PLAYER HAND */
+
+.player-area {
+    padding: 10px;
+}
+
+#player-hand {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    min-height: 190px;
+    padding: 30px 10px 10px;
+}
+
+.hand-card-container {
+    position: relative;
+    width: clamp(75px, 8vw, 120px);
+}
+
+.hand-card {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 3px 5px 8px #0002;
+    transition: transform 0.2s, filter 0.2s;
+}
+
+#player-hand .hand-card {
+    cursor: pointer;
+}
+
+#player-hand .hand-card:hover {
+    transform: translateY(-12px);
+    filter: brightness(1.08);
+}
+
+#player-hand .hand-card.selected {
+    transform: translateY(-25px);
+    outline: 3px solid gold;
+    box-shadow: 0 0 18px gold;
+}
+
+.card-power {
+    background: var(--yellow);
+    padding: 5px;
+    border-radius: 6px;
+    font-size: 17px;
+    font-weight: bold;
+    margin-top: 5px;
+    text-align: center;
+}
+
+/* GAME ACTIONS */
+
+.game-actions {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.game-actions button {
+    width: 160px;
+}
+
+#pass-button {
+    background: var(--red);
+}
+
+#play-button {
+    background: var(--green);
+}
+
+/* CARD COLLECTION */
+
+.collection {
+    padding: 20px;
+    text-align: center;
+}
+
+.back-button {
+    width: 100px;
+    background: var(--blue);
+}
+
+#card-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 130px);
+    justify-content: center;
+    gap: 15px;
+}
+
+.game-card {
+    width: 130px;
+    padding: 8px;
+    transition: 0.2s;
+}
+
+.game-card:hover {
+    transform: translateY(-5px);
+}
+
+.game-card img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+.game-card h3 {
+    font-size: 18px;
+    margin: 5px 0;
+}
+
+.game-card p {
+    font-size: 15px;
+    margin: 0;
+}
+
+/* CARD ANIMATION */
+
+@keyframes cardPlay {
+    from {
+        opacity: 0;
+        transform: translateY(35px) scale(0.8);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* COMBO ANIMATION */
+
+@keyframes comboGlow {
+    0%, 100% {
+        text-shadow: 0 0 5px gold;
+    }
+
+    50% {
+        text-shadow: 0 0 20px orange;
+    }
+}
+
+.combo-effect {
+    color: #b8860b;
+    animation: comboGlow 0.7s ease-in-out 3;
+}
+
+/* VICTORY SCREEN */
+
+#result-screen {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    background: #35445caa;
+    backdrop-filter: blur(5px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.result-box {
+    width: min(450px, 95%);
+    background: var(--paper);
+    border: 4px solid var(--ink);
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 8px 8px 0 #0003;
+    animation: resultPop 0.4s ease-out;
+}
+
+#result-title {
+    font-size: 55px;
+    margin: 10px 0;
+}
+
+#result-description {
+    font-size: 23px;
+    margin: 15px 0;
+}
+
+.result-box button {
+    width: 90%;
+}
+
+.result-box button:first-of-type {
+    background: var(--green);
+}
+
+.result-box button:last-of-type {
+    background: var(--blue);
+}
+
+@keyframes resultPop {
+    from {
+        opacity: 0;
+        transform: scale(0.7);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@media (max-width: 600px) {
+    .battle-title {
+        font-size: 20px;
+    }
+
+    .main-menu::before,
+    .main-menu::after {
+        font-size: 60px;
+    }
+
+    #game-board {
+        padding: 8px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+}
